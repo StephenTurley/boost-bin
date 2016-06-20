@@ -1,6 +1,6 @@
 language: clojure
 lein: lein2
-script: lein do test, uberjar
+script: lein test
 jdk:
 - oraclejdk8
 deploy:
