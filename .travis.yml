@@ -2,4 +2,9 @@ language: clojure
 lein: lein2
 script: lein do test, uberjar
 jdk:
-  - oraclejdk8
+- oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: bNojQnuYKUgXuZpofwFu80aN1PNnspQk2Tm/lJ7H/aGLXYAOlV6q9OZCDV9EkKLdYrryZS10YLhOXBHpO7uEPUYdgu3B0SMTw6CVlSI1T+dS/pgS5aFXy3cAcvK5e+UzEujoZ3k9F7wqAIMz6Z3KpFQaSI4m2mvgAG6rQWJIs+CMq2u5KoDmX3YfhdXtXZrF4qTAvz/KVkgdExOqOWNb/clmWytRGfdt7PlDvw3deFYcW1RVcGTv/22f18cMzZ9h4t1n5WbJLjiF5HlcJBuioKmBsIvHsODHW/T6L43ltpjgmnWhVT3bILBIxOJ6BqiufVzsbyVhLAUNAsoqMpJEEz2CbEgY9QOFjIfj+snAt19t8wiacmaHXB4mTrpfyugQZQbkzEsdpVd+1fjkxlqf0xkdpt877YJiCA+n8FMU49ra2vuoJsbtew/xyUs/3SjzELyw2FjYWPE9/7nBa37waL1zNTL9GmmN0DgJu1UI47P08g09chI4/o8vI/+wy1ACg/wwL9HGqV/1EqeFws6N49C0mZ9HD80Lx+er2x8L4CS47UaEaWPttkBYgko57jBo9/OyCwU4dXod+Dv+dARtLvUAiKohqLHSpH954XAbOkKLk8bsJ0/g76DasjiL0Z5Gi3ivfIGrFQSqXpa6dPeSEOTVBta2EgKv97ru9UGwN6Q=
+  app: boost-bin

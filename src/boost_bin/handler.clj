@@ -13,6 +13,7 @@
 
 (defn -main
   [& args]
-  (run-jetty
-    app
-    {:port 8080}))
+  (let [port (Integer/parseInt (or (first args) "8080"))]
+    (run-jetty
+      app
+      {:port port})))
