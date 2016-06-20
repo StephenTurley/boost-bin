@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/StephenTurley/boost-bin.svg?branch=master)](https://travis-ci.org/StephenTurley/boost-bin)
 
-[Boost Bin](https://www.boostbin.com), an app for sharing your COBB Accessport data logs. 
+[Boost Bin](http://www.boostbin.com), an app for sharing your COBB Accessport data logs. 
 
 ## Prerequisites
 
