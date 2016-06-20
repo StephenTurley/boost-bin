@@ -1,14 +1,17 @@
 (ns boost-bin.handler-test
-  (:require [clojure.test :refer :all]
+  (:require [speclj.core :refer :all]
             [ring.mock.request :as mock]
             [boost-bin.handler :refer :all]))
 
-(deftest test-app
-  (testing "main route"
+(describe "The routes"
+  (describe "main route"
     (let [response (app (mock/request :get "/"))]
-      (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
+      (it "should return a 200"
+          (should= (:status response) 200))
+      (it "should return Hello World"
+          (should= (:body response) "Hello World"))))
 
-  (testing "not-found route"
+  (describe "not-found route"
     (let [response (app (mock/request :get "/invalid"))]
-      (is (= (:status response) 404)))))
+      (it "should return a 400"
+          (should= (:status response) 404)))))
