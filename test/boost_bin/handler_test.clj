@@ -17,20 +17,17 @@
       (it "should return a 400"
           (should= (:status response) 404)))))
 
+(defn jetty-port
+	[jetty-args]
+	(:port (nth jetty-args 1)))
 
 (describe "The app"
   (it "should default to port 8080"
     (with-redefs [run-jetty (fn [handler opts] [handler opts])]
-      (should= 8080 (->
-											(underTest/-main)
-											(nth 1)
-											(:port)))))
+      (should= 8080 (jetty-port (underTest/-main)))))
 	(it "should overide the port with first arg"
 		(with-redefs [run-jetty (fn [handler opts] [handler opts])]
-			(should= 8081 (->
-											(underTest/-main "8081")
-											(nth 1)
-											(:port)))))
+			(should= 8081 (jetty-port (underTest/-main "8081")))))
 	(it "should set the app handler"
 		(with-redefs [run-jetty (fn [handler opts] [handler opts])]
 			(should= underTest/app (first (underTest/-main))))))
