@@ -2,20 +2,21 @@
   (:require [speclj.core :refer :all]
             [ring.mock.request :as mock]
             [boost-bin.handler :as underTest]
-            [ring.adapter.jetty :refer [run-jetty]]))
+            [ring.adapter.jetty :refer [run-jetty]]
+						[clojure.java.io :as io]))
 
 (describe "The routes"
   (describe "main route"
     (let [response (underTest/app (mock/request :get "/"))]
       (it "should return a 200"
-          (should= (:status response) 200))
+          (should= 200 (:status response)))
       (it "should return Hello World"
-          (should= (:body response) "Hello World"))))
+          (should= (io/file "public/index.html") (:body response)))))
 
   (describe "not-found route"
     (let [response (underTest/app (mock/request :get "/invalid"))]
       (it "should return a 400"
-          (should= (:status response) 404)))))
+          (should= 404 (:status response))))))
 
 (defn jetty-port
 	[jetty-args]
