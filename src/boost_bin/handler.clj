@@ -7,7 +7,7 @@
   (:gen-class))
 
 (defroutes app-routes
-  (GET "/" [] (io/file "public/index.html"))
+  (GET "/" [] (io/resource "public/index.html"))
   (route/not-found "Not Found"))
 
 (def app (wrap-defaults app-routes site-defaults))

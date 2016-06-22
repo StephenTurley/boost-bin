@@ -10,8 +10,8 @@
     (let [response (underTest/app (mock/request :get "/"))]
       (it "should return a 200"
           (should= 200 (:status response)))
-      (it "should return Hello World"
-          (should= (io/file "public/index.html") (:body response)))))
+      (it "should return index.html"
+          (should-contain "<title>BoostBin</title>" (slurp (:body response))))))
 
   (describe "not-found route"
     (let [response (underTest/app (mock/request :get "/invalid"))]
