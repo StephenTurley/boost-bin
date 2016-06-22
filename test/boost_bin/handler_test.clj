@@ -22,13 +22,17 @@
 	[jetty-args]
 	(:port (nth jetty-args 1)))
 
+(defmacro mock-jetty
+  [someTest]
+  `(with-redefs [run-jetty (fn [handler# args#] [handler# args#])] ~someTest))
+
 (describe "The app"
   (it "should default to port 8080"
-    (with-redefs [run-jetty (fn [handler opts] [handler opts])]
-      (should= 8080 (jetty-port (underTest/-main)))))
+      (mock-jetty
+        (should= 8080 (jetty-port (underTest/-main)))))
 	(it "should overide the port with first arg"
-		(with-redefs [run-jetty (fn [handler opts] [handler opts])]
-			(should= 8081 (jetty-port (underTest/-main "8081")))))
+      (mock-jetty
+        (should= 8081 (jetty-port (underTest/-main "8081")))))
 	(it "should set the app handler"
-		(with-redefs [run-jetty (fn [handler opts] [handler opts])]
-			(should= underTest/app (first (underTest/-main))))))
+      (mock-jetty
+        (should= underTest/app (first (underTest/-main))))))
