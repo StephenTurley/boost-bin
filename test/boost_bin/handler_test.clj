@@ -1,8 +1,8 @@
 (ns boost-bin.handler-test
-  (:require [speclj.core :refer :all]
-            [ring.mock.request :as mock]
-            [boost-bin.handler :as underTest]
-            [ring.adapter.jetty :refer [run-jetty]]
+	(:require [speclj.core :refer :all]
+						[ring.mock.request :as mock]
+						[boost-bin.handler :as underTest]
+						[ring.adapter.jetty :refer [run-jetty]]
 						[clojure.java.io :as io]))
 
 (describe "The routes"
@@ -12,7 +12,11 @@
           (should= 200 (:status response)))
       (it "should return index.html"
           (should= (slurp (io/resource "public/index.html")) (slurp (:body response))))))
-
+	(describe "csv upload"
+		(with-redefs [underTest/saveDataLog (fn [stub] stub)]
+			(let [response (underTest/app (mock/request :post "/datalog" {"data" "someData"}))]
+			 (it "should call saveDataLog with the csv"
+				 (should= "someData" (:body response))))))
   (describe "not-found route"
     (let [response (underTest/app (mock/request :get "/invalid"))]
       (it "should return a 400"
@@ -36,3 +40,9 @@
 	(it "should set the app handler"
       (mock-jetty
         (should= underTest/app (first (underTest/-main))))))
+
+
+(describe "save data log"
+	(it "should return the csv as a string"
+		(should= (slurp (io/resource "test/testdata.csv"))
+						 (underTest/saveDataLog {:tempfile (io/resource "test/testdata.csv")}))))
