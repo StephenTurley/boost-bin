@@ -5,7 +5,8 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
-                 [ring/ring-jetty-adapter "1.5.0"]]
+                 [ring/ring-jetty-adapter "1.5.0"]
+                 ]
   :plugins [
             [lein-ring "0.9.7"]
             [speclj "3.3.0"]]
@@ -15,4 +16,5 @@
               :uberjar {:aot :all}
               :dev {:dependencies [
                         [ring/ring-mock "0.3.0"]
-                        [speclj "3.3.2"]]}})
+                        [speclj "3.3.2"]
+                        [clj-fakes "0.5.0"]]}})
