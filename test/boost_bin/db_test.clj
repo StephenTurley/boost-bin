@@ -9,8 +9,8 @@
 (def vector-map {:derp [:foo :bar]})
 
 (f/with-fakes
-  (f/patch! #'boost-bin.csv/as-vector-map (f/fake [[f/any?] vector-map]))
   (describe "save data log"
     (it "should return the csv as a map"
+    (f/patch! #'boost-bin.csv/as-vector-map (f/fake [[f/any?] vector-map]))
       (should= vector-map
             (underTest/save-data-log {:tempfile test-data})))))
