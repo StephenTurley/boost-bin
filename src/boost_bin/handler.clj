@@ -22,6 +22,4 @@
 (defn -main
   [& args]
   (let [port (Integer/parseInt (or (first args) "8080"))]
-    (run-jetty
-      app
-      {:port port})))
+    (run-jetty app {:port port})))
