@@ -6,7 +6,9 @@
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
                  [ring/ring-jetty-adapter "1.5.0"]
-                 ]
+                 [org.clojure/data.csv "0.1.3"]
+                 [com.novemberain/monger "3.0.2"]
+                 [ring/ring-json "0.4.0"]]
   :plugins [
             [lein-ring "0.9.7"]
             [speclj "3.3.0"]]
