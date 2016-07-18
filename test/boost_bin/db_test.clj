@@ -1,6 +1,6 @@
 (ns boost-bin.db_test
   (:require [speclj.core :refer :all]
-            [boost-bin.db :as underTest]
+            [boost-bin.db :as under-test]
             [boost-bin.csv :as csv]
             [clojure.java.io :as io]
             [clj-fakes.core :as f]))
@@ -15,4 +15,4 @@
         (f/patch! #'csv/as-vector-map (f/fake [[test-data] vector-map]))
 
         (should= vector-map
-                 (underTest/save-data-log {:tempfile test-data})))))
+                 (under-test/save-data-log {:tempfile test-data})))))
