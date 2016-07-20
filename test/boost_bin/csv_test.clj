@@ -6,7 +6,8 @@
 
 (def a-csv-file "derpyderpyderpy")
 (def a-csv-file-as-string "flerpnderpndoo")
-(def a-csv [[:a :b :c] [1 2 3] [4 5 6]])
+(def keys [:a :b :c])
+(def a-csv [keys [1 2 3] [4 5 6]])
 
 (describe
   "as vector-map"
@@ -14,6 +15,7 @@
       (f/with-fakes
         (f/patch! #'slurp (f/fake [[a-csv-file] a-csv-file-as-string]))
         (f/patch! #'c/read-csv (f/fake [[a-csv-file-as-string] a-csv]))
+        (f/patch! #'under-test/keywordize (f/fake [[keys] keys]))
 
         (should= [1 4] (:a (under-test/as-vector-map a-csv-file)))
         (should= [2 5] (:b (under-test/as-vector-map a-csv-file)))
