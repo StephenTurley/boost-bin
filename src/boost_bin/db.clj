@@ -16,5 +16,5 @@
 	(let [{:keys [conn db]} (connect)
 				id (ObjectId.)]
 		(mc/insert-and-return db "datalogs"
-							 {:id id, :data (csv/as-vector-map (:tempfile data))})
-		{:id (.toString id)}))
+							 {:_id id, :data (csv/as-vector-map (:tempfile data))})
+		{:_id (.toString id)}))
