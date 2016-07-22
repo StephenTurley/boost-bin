@@ -16,8 +16,8 @@
 	(describe "csv upload"
 		(with-redefs [db/save-data-log (fn [stub] stub)]
 			(let [response (underTest/app (mock/request :post "/datalog" {"data" "someData"}))]
-			 (it "should call saveDataLog with the csv"
-				 (should= "someData" (:body response))))))
+			 (it "should call saveDataLog with the csv and redirect"
+				 (should= 302 (:status response))))))
   (describe "not-found route"
     (let [response (underTest/app (mock/request :get "/invalid"))]
       (it "should return a 400"

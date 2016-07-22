@@ -17,4 +17,9 @@
 				id (ObjectId.)]
 		(mc/insert-and-return db "datalogs"
 							 {:_id id, :data (csv/as-vector-map (:tempfile data))})
-		{:_id (.toString id)}))
+		(.toString id)))
+
+(defn fetch-data-log
+	[id]
+	(let [{:keys [conn db]} (connect)]
+		(mc/find-map-by-id db "datalogs" (ObjectId. id))))

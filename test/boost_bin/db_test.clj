@@ -3,7 +3,8 @@
             [boost-bin.db :as under-test]
             [boost-bin.csv :as csv]
             [clojure.java.io :as io]
-            [clj-fakes.core :as f]))
+            [clj-fakes.core :as f]
+            [monger.collection :as mc]))
 
 (def test-data (io/resource "test/testdata.csv"))
 (def vector-map {:derp [:foo :bar]})
