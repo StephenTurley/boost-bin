@@ -11,7 +11,8 @@
                  [ring/ring-json "0.4.0"]]
   :plugins [
             [lein-ring "0.9.7"]
-            [speclj "3.3.0"]]
+            [speclj "3.3.0"]
+						[lein-npm "0.6.2"]]
   :ring {:handler boost-bin.handler/app}
 	:main boost-bin.handler
   :profiles {
@@ -19,4 +20,8 @@
               :dev {:dependencies [
                         [ring/ring-mock "0.3.0"]
                         [speclj "3.3.2"]
-                        [clj-fakes "0.5.0"]]}})
+                        [clj-fakes "0.5.0"]]}}
+	:npm {:dependencies [[jquery "3.1.0"]
+											 [chart.js "2.2.0-rc.2"]
+											 [underscore "1.8.3"]]
+				:root "resources/public/js/"})

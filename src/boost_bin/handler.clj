@@ -12,10 +12,13 @@
 (defroutes app-routes
   (GET "/" []
 		(io/resource "public/index.html"))
+ 	(GET "/datalog/*" []
+		(io/resource "public/chart.html"))
  	(GET "/api/datalog/:id" [id]
 		(response (:data (db/fetch-data-log id))))
   (POST "/datalog" {params :params}
-		(redirect (str "/api/datalog/" (db/save-data-log (:data params)))))
+		(redirect (str "/datalog/#" (db/save-data-log (:data params)))))
+ 	(route/resources "/")
   (route/not-found "Not Found"))
 
 (def app (-> app-routes
