@@ -26,7 +26,10 @@
                     x: -20 //center
                 },
                 xAxis: {
-
+                    categories: data['Time-sec'],
+                    title: {
+                        text: 'Time(s)'
+                    }
                 },
                 yAxis: {
                     title: {
