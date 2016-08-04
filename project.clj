@@ -22,6 +22,6 @@
                         [speclj "3.3.2"]
                         [clj-fakes "0.5.0"]]}}
 	:npm {:dependencies [[jquery "3.1.0"]
-											 [chart.js "2.2.0-rc.2"]
+											 [jquery-flot "0.8.3"]
 											 [underscore "1.8.3"]]
 				:root "resources/public/js/"})

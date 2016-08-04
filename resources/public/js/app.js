@@ -7,32 +7,40 @@
 		return $.get('/api/datalog/' + id);
 	}
 
-	function renderChart(data){
-		var ctx = $('#datalog');
-		var afLearning = data['AF-Learning-1-'];
-		var throttle = data['Throttle-Pos-'];
+	function dataAsArray(data){
+	    var foo = [];
+	    _.mapObject(data, function(val, key){
+	        foo.push({
+	            name: key,
+	            data: _.map(val, function(num){ return Number(num); })
+	        });
+	    });
 
-		var datalog = new Chart(ctx, {
-            type: 'line',
-            data: {
-            	labels: _.range(afLearning.length),
-                datasets: [{
-                	label: 'Throttle Pos',
-                	data: throttle
-                }]
-            },
-            options: {
-                    scales: {
-                        xAxes: [{
-                            ticks: {
-                            	max: 500,
-                            	min: 0,
-                                fixedStepSize: 10
-                            }
-                        }]
+	    return foo;
+	}
+
+	function renderChart(data){
+		$('#container').highcharts({
+                title: {
+                    text: 'Data Log',
+                    x: -20 //center
+                },
+                xAxis: {
+
+                },
+                yAxis: {
+                    title: {
+                        text: 'The data'
                     }
-                }
-        });
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: dataAsArray(data)
+            });
 	}
 
 	fetchDataLog(logId())
