@@ -12,16 +12,16 @@
   :plugins [
             [lein-ring "0.9.7"]
             [speclj "3.3.0"]
-						[lein-npm "0.6.2"]]
+            [lein-npm "0.6.2"]]
   :ring {:handler boost-bin.handler/app}
-	:main boost-bin.handler
+  :main boost-bin.handler
   :profiles {
               :uberjar {:aot :all}
               :dev {:dependencies [
                         [ring/ring-mock "0.3.0"]
                         [speclj "3.3.2"]
                         [clj-fakes "0.5.0"]]}}
-	:npm {:dependencies [[jquery "3.1.0"]
-											 [jquery-flot "0.8.3"]
-											 [underscore "1.8.3"]]
-				:root "resources/public/js/"})
+  npm {:dependencies [[jquery "3.1.0"]
+                      [jquery-flot "0.8.3"]
+                      [underscore "1.8.3"]]
+        :root "resources/public/js/"})
